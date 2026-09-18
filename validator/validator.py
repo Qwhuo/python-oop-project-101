@@ -1,5 +1,7 @@
 from .TypesValidators.string_validator import StringValidator
 from .TypesValidators.num_validator import NumValidator
+from .TypesValidators.list_validator import ListValidator
+
 
 
 
@@ -7,7 +9,8 @@ class Validator:
     def __init__(self):
         self.validators = {
             "string": StringValidator,
-            "number": NumValidator
+            "number": NumValidator,
+            "list": ListValidator
         }
 
     def string(self):
@@ -15,6 +18,9 @@ class Validator:
 
     def number(self):
         return self.validators["number"]()
+
+    def list(self):
+        return self.validators["list"]()
 
 
 # v = Validator()
