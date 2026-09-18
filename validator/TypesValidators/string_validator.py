@@ -19,7 +19,7 @@ class StringValidator:
         return self._contains
 
     def required(self):
-        self._required = True
+        self._required = True if not self.is_required else False
         return self
 
     def min_len(self, min_len_set):
