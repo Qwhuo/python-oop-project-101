@@ -24,6 +24,7 @@ class DictValidator:
             if type(val) not in validators:
                 raise TypeError("Incorrect Format")
         self._shape = sh
+        return self
 
     def test(self, name, *args):
         if name not in self.get_functions.keys():
