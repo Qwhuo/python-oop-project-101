@@ -1,3 +1,4 @@
+from .TypesValidators.custom_validator import CustomValidator
 from .TypesValidators.string_validator import StringValidator
 from .TypesValidators.num_validator import NumValidator
 from .TypesValidators.list_validator import ListValidator
@@ -14,21 +15,33 @@ class Validator:
             "list": ListValidator,
             "dict": DictValidator
         }
+        self.functions = {
+            "string": {},
+            "number": {},
+            "list": {},
+            "dict": {}
+        }
 
     def string(self):
-        return self.validators["string"]()
+        return self.validators["string"](funcs=self.functions["string"])
 
     def number(self):
-        return self.validators["number"]()
+        return self.validators["number"](funcs=self.functions["number"])
 
     def list(self):
-        return self.validators["list"]()
+        return self.validators["list"](funcs=self.functions["list"])
 
     def dict(self):
-        return self.validators["dict"](self)
+        return self.validators["dict"](self, funcs=self.functions["dict"])
+
+    def add_validator(self, type, name, func):
+        self.functions[type][name] = func
 
     def get_validators(self):
-        return self.validators.values()
+        return self.validators
+
+    def get_functions(self):
+        return self.functions
 
 
 # v = Validator()
