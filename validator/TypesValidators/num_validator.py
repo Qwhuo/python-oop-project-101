@@ -52,7 +52,7 @@ class NumValidator:
                 return False
             else:
                 return True
-        if self.is_positive and num < 0:
+        if self.is_positive and num <= 0:
             return False
         if num > self.get_range[1] or num < self.get_range[0]:
             return False
